@@ -1,4 +1,5 @@
 'use client';
+import React from "react"
 import ArrowIcon from '../assets/icons/arrow-w.svg';
 import cursorImage from "../assets/images/cursor.png";
 import messageImage from "../assets/images/message.png";

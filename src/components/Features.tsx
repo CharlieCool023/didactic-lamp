@@ -1,4 +1,5 @@
 import EcosystemIcon from "../assets/icons/ecosystem.svg";
+import React from "react"
 
 const features = [
   {
