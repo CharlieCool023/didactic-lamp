@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import logoImage from '../assets/images/logosaas.png';
 import MenuIcon from '../assets/icons/menu.svg';
+import Link from 'next/link';
 
 export const Navbar = () => {
   return(
@@ -19,12 +20,14 @@ export const Navbar = () => {
           <MenuIcon className="text-white"/>
         </div>
         <nav className="flex gap-6 items-center hidden sm:flex">
-            <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">About</a>
-            <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">Features</a>
-            <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">Updates</a>
+            <Link href="#faq" className="text-opacity-60 text-white hover:text-opacity-100 transition">About</Link>
+            <Link href="#features" className="text-opacity-60 text-white hover:text-opacity-100 transition">Features</Link>
+            {/* <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">Updates</a>
             <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">Help</a>
-            <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">customers</a>
-            <button className="bg-white py-2 px-4 rounded-lg">Get for free</button>
+            <a href="#" className="text-opacity-60 text-white hover:text-opacity-100 transition">customers</a> */}
+            <Link href="/login"> 
+              <button className="bg-white py-2 px-4 rounded-lg">Login</button>
+            </Link>
         </nav>
       </div>
     </div>

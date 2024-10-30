@@ -1,5 +1,4 @@
 'use client'
-
 import React from "react";
 import PlusIcon from "../assets/icons/plus.svg";
 import MinusIcon from "../assets/icons/minus.svg";
@@ -7,26 +6,27 @@ import clsx from "clsx";
 
 const items = [
   {
-    question: "What payment methods do you accept?",
+    question: "How can I use this app to verify a product?",
     answer:
-      "We accept all major credit cards, PayPal, and various other payment methods depending on your location. Please contact our support team for more information on accepted payment methods in your region.",
+      "To verify a product, simply scan the product's QR code using the app's built-in scanner. The app will then retrieve the product's information from the blockchain and display it for you to review. You can verify the product's authenticity by comparing the information on the blockchain with the product's physical attributes.",
   },
   {
-    question: "How does the pricing work for teams?",
+    question: "How can producers add their products to the platform?",
     answer:
-      "Our pricing is per user, per month. This means you only pay for the number of team members you have on your account. Discounts are available for larger teams and annual subscriptions.",
+      "Producers can add their products to the platform by creating a product profile and generating a unique product ID. To add products, producers must have a blockchain wallet. If you don't have one, the app will guide you through the steps to create one. Once you have a wallet, you can easily add your products and generate their unique IDs.",
   },
   {
-    question: "Can I change my plan later?",
+    question: "How does the app generate unique product IDs?",
     answer:
-      "Yes, you can upgrade or downgrade your plan at any time. Changes to your plan will be prorated and reflected in your next billing cycle.",
+      "The app utilizes blockchain technology to generate unique and tamper-proof product IDs. When a producer adds a product, the app creates a digital record of the product's information on the blockchain. This record includes a unique ID that is linked to the product, ensuring its authenticity and traceability.",
   },
   {
-    question: "Is my data secure?",
+    question: "What are the benefits of blockchain-based product verification?",
     answer:
-      "Security is our top priority. We use state-of-the-art encryption and comply with the best industry practices to ensure that your data is stored securely and accessed only by authorized users.",
+      "Blockchain-based product verification offers several benefits, including enhanced transparency, improved security, reduced counterfeiting, and increased consumer trust. By providing a secure and immutable record of product information, blockchain technology helps to establish trust and authenticity throughout the supply chain.",
   },
 ];
+
 const AccordionItem = ({ question, answer }:{question: string, answer: string}) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -49,7 +49,7 @@ export const FAQs = () => {
   return (
     <div className="bg-black text-white bg-gradient-to-b from-[#5D2CAB] to-black py-[72px] py-24 sm:py-24">
       <div className="container">
-        <h2 className="text-center text-5xl font-bold sm:text-6xl sm:max-w-[648px] mx-auto tracking-tighter">Frequently asked questions</h2>
+        <h2 className="text-center text-5xl font-bold sm:text-6xl sm:max-w-[648px] mx-auto tracking-tighter" id="faq">Frequently asked questions</h2>
         <div className="mt-12 max-w-[648px] mx-auto">
           {items.map(({ question, answer }) => (
             <AccordionItem key={question} question={question} answer={answer} />

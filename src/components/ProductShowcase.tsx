@@ -7,7 +7,7 @@ export const ProductShowcase = () => {
         <h2 className="text-center text-5xl font-bold sm:text-6xl tracking-tighter ">Intuitive interface</h2>
         <div className="max-w-xl mx-auto">
           <p className="text-center mt-5 text-xl text-white/70">
-            Celebrate the joy of accomplishment with an app designed to track your progress, motivate your efforts, and celebrate your successes, one task at a time.
+          Verify product authenticity with blockchain technology and a user-friendly interface. <br /> Ensuring product transparency and build consumer trust.
           </p>
         </div>
         <Image 
