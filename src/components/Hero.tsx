@@ -13,7 +13,7 @@ export const Hero = () => {
       <div className="container relative">
         <div className="flex items-center justify-center">
           <a href="#" className="inline-flex items-center gap-3 border py-1 px-2 rounded-lg border-white/30">
-            <span  contentEditable="true" className="bg-[linear-gradient(to_right,#f87AFF,#FB93D0,#FFDD99,#C3F0B2,#2FD8FE)] bg-clip-text text-transparent [-webkit-background-clip:text]">
+            <span className="bg-[linear-gradient(to_right,#f87AFF,#FB93D0,#FFDD99,#C3F0B2,#2FD8FE)] bg-clip-text text-transparent [-webkit-background-clip:text]">
               Version 2.0 is coming
             </span>
             <span className='inline-flex items-center gap-1'>
