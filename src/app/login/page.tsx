@@ -12,7 +12,7 @@ const Login: React.FC = () => {
         <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
         <form  className="space-y-4">
         {/* onSubmit={handleSubmit} */}
-          {/* ... (username and password input fields) ... */}
+          {/* ... (username    and password input fields) ... */}
           <div>
             <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Username:</label>
             <input

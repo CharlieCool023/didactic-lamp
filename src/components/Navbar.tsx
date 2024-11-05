@@ -15,7 +15,7 @@ export const Navbar = () => {
       if (
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target as Node) &&
-        !event.target.closest('.menu-icon')
+        !((event.target as Element).closest('.menu-icon'))
       ) {
         setIsNavOpen(false);
       }
