@@ -95,6 +95,10 @@ const RegisterPage = () => {
           >
             Register
           </button>
+          <p className='text-sm text-center mt-4 text-gray-500 py-5 '>
+            Already have an account? 
+              <a href="/login" className='text-sm text-center mt-4 text-blue-500 hover:underline '> click here</a>
+          </p>
         </form>
         {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
         {success && <p className="text-green-500 text-sm mt-4">{success}</p>}

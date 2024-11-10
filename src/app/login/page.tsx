@@ -94,8 +94,6 @@ export default function Home() {
                 src={logoImage}
                 alt="background image"
               />
-              <p className='color-blue'>Are you a producer,sign up <span><a href="/register">here</a></span> </p>
-              
             </div>
         </div>
     </div>
