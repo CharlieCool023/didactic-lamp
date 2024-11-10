@@ -79,6 +79,9 @@ export default function Home() {
                 </form>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <p className="mt-4 text-xs text-slate-200">
+                <a href="/register" className="text-blue-500 hover:underline">Click here to register</a>
+                </p>
+                <p className="mt-4 text-xs text-slate-200">
                 @2024 CharlieCool All rights reserved
                 </p>
 
