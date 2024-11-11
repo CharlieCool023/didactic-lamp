@@ -49,9 +49,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Register</h2>
+    <div className="min-h-screen flex items-center justify-center bg-[#26313c]">
+      <div className="bg-[#16202a] p-8 rounded shadow-md w-96">
+        <h2 className="text-3xl font-bold mb-4 text-center font-bold">Register</h2>
         <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name</label>
@@ -91,13 +91,13 @@ const RegisterPage = () => {
           </div>
           <button 
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline w-full"
           >
-            Register
+            Sign Up
           </button>
           <p className='text-sm text-center mt-4 text-gray-500 py-5 '>
-            Already have an account? 
-              <a href="/login" className='text-sm text-center mt-4 text-blue-500 hover:underline '> click here</a>
+            Already have an account? Click
+              <a href="/login" className='text-sm text-center mt-4 text-blue-500 hover:underline '> here</a>
           </p>
         </form>
         {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
