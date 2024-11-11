@@ -86,14 +86,11 @@ export default function Home() {
                 </p>
 
             </div>
-            <div className="relative hidden md:block w-1/3 h-2/3 mx-auto flex items-center justify-center bg-grey">
-              <Image
-                className="object-contain "
-                width={200} // Adjust width as needed
-                height={100} // Adjust height as needed
-                src={logoImage}
-                alt="background image"
-              />
+            <div className="container bg-[linear-gradient(to_bottom,#0f172a,#1e293b)] flex flex-col items-center justify-center h-full">
+              <h2 className="text-7xl text-center font-extrabold text-white mb-4">Blockchain Verification App</h2>
+              <p className="text-center text-white text-md ">
+                Ensuring product authenticity and transparency using blockchain technology. Verify with confidence and build consumer trust. 
+              </p>
             </div>
         </div>
     </div>
