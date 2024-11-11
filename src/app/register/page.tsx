@@ -1,11 +1,11 @@
-
-// src/app/register/page.tsx
 "use client";
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Checkbox } from "@/components/ui/checkbox"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
+import {Button} from '@/components/ui/button';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,7 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from '@/components/ui/alert-dialog'
 
 
 const RegisterPage = () => {
@@ -24,16 +24,15 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const router = useRouter();
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleRegister = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
     setError('');
-    setSuccess('');
 
     try {
+      const loadingToastId = toast.loading('Registering...');
+
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
@@ -42,23 +41,29 @@ const RegisterPage = () => {
         body: JSON.stringify({ name, email, password }),
       });
 
-      if (!response.ok) {
-        // Improved error handling:
-        let errorData = { error: 'Registration failed' }; // Default error
-        try {
-          errorData = await response.json(); // Attempt to parse JSON
-        } catch (jsonError) {
-          console.error('Error parsing JSON:', jsonError); // Log parsing error
-        }
-        throw new Error(errorData.error || 'Registration failed'); 
-      }
+      toast.dismiss(loadingToastId);
 
-      setSuccess('Registration successful!');
-      // You might want to redirect to the login page after successful registration
-      router.push('/login'); 
-      
-    } catch (error: any) {
-      setError(error.message);
+      if (response.ok) {
+        // Registration successful
+        router.push('/login'); // Redirect to login page
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Registration failed');
+
+        // Show error toast
+        toast.error(errorData.error || 'Registration failed', {
+          position: 'top-center',
+          autoClose: 3000,
+        });
+      }
+    } catch (error) {
+      setError('Something went wrong. Please try again.');
+
+      // Show error toast
+      toast.error('Something went wrong. Please try again.', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
     }
   };
 
@@ -68,7 +73,7 @@ const RegisterPage = () => {
         <h2 className="text-3xl font-bold mb-4 text-center font-bold text-white">Register</h2>
         <form onSubmit={handleRegister}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+            <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2 text-white">Name</label>
             <input
               type="text"
               id="name"
@@ -80,7 +85,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2 text-white">Email</label>
             <input
               type="email"
               id="email"
@@ -91,8 +96,8 @@ const RegisterPage = () => {
               required
             />
           </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2 text-white">Password</label>
             <input
               type="password"
               id="password"
@@ -103,51 +108,43 @@ const RegisterPage = () => {
               required
             />
           </div>
+          <div className="py-3">
           <AlertDialog>
-  <AlertDialogTrigger>
-    <div className="items-top flex py-3">
-      <Checkbox id="terms1" />
-      <div className="grid gap-1.5 leading-none">
-        <label
-          htmlFor="terms1"
-          className="text-sm text-muted-foreground cursor-pointer"
-        >
-          Accept terms and conditions
-        </label>
-      </div>
-    </div>
-  </AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-      <AlertDialogDescription>
-        Currently, there is no provision for a forget password option. Please copy it down before you continue.
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-<AlertDialogAction>Continue</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
+            <AlertDialogTrigger asChild>
+              <div> {/* Added wrapper div here */}
+                <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                  Register
+                </Button>
+              </div>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure you want to register?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onSubmit={handleRegister}>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+          </div>
 
-          <button 
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline w-full"
-          >
-            Sign Up
-          </button>
-
-          <p className='text-sm text-center mt-4 text-gray-500 py-5 '>
-            Already have an account? Click
-              <a href="/login" className='text-sm text-center mt-4 text-blue-500 hover:underline '> here</a>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          <p className="text-center text-gray-600 mt-4 text-white">
+            Already have an account?{' '}
+            <Link legacyBehavior href="/login">
+              <a className="text-blue-500 hover:underline">Login</a>
+            </Link>
           </p>
         </form>
-        {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
-        {success && <p className="text-green-500 text-sm mt-4">{success}</p>}
       </div>
+      <ToastContainer />
     </div>
   );
 };
 
 export default RegisterPage;
+
