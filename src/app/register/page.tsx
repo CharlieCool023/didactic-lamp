@@ -51,7 +51,7 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#26313c]">
       <div className="bg-[#16202a] p-8 rounded shadow-md w-96">
-        <h2 className="text-3xl font-bold mb-4 text-center font-bold">Register</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center font-bold text-white">Register</h2>
         <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name</label>
