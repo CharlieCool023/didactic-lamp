@@ -41,10 +41,6 @@ export default function Home() {
         const errorData = await response.json();
         setError(errorData.error || 'Login failed');
 
-        toast.error(errorData.error || 'Login failed', {
-          position: "top-center",
-          autoClose: 3000, // Close after 3 seconds
-        });
         if (errorData.error === 'Invalid email') {
           toast.error('Incorrect email. Please try again.', {
             // ...
@@ -54,7 +50,7 @@ export default function Home() {
             // ...
           });
         } else {
-          toast.error('Login failed. Please sign up if you don\'t have an account.', {
+          toast.error('Invalid credentials, please try again.', {
             // ...
           });
         }
@@ -68,7 +64,6 @@ export default function Home() {
     });
         
     }
-    
   };
 
   return (
