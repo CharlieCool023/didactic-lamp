@@ -86,7 +86,7 @@ export default function Home() {
                 </p>
 
             </div>
-            <div className="container bg-[linear-gradient(to_bottom,#0f172a,#1e293b)] flex flex-col items-center justify-center h-full">
+            <div className="relative hidden md:flex bg-[linear-gradient(to_bottom,#0f172a,#1e293b)] flex-col text-center items-center justify-center max-w-7xl mx-auto">
               <h2 className="text-7xl text-center font-extrabold text-white mb-4">Blockchain Verification App</h2>
               <p className="text-center text-white text-md ">
                 Ensuring product authenticity and transparency using blockchain technology. Verify with confidence and build consumer trust. 
