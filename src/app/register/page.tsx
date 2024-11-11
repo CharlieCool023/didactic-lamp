@@ -4,6 +4,20 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Checkbox } from "@/components/ui/checkbox"
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -89,12 +103,41 @@ const RegisterPage = () => {
               required
             />
           </div>
+          <AlertDialog>
+  <AlertDialogTrigger>
+    <div className="items-top flex py-3">
+      <Checkbox id="terms1" />
+      <div className="grid gap-1.5 leading-none">
+        <label
+          htmlFor="terms1"
+          className="text-sm text-muted-foreground cursor-pointer"
+        >
+          Accept terms and conditions
+        </label>
+      </div>
+    </div>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        Currently, there is no provision for a forget password option. Please copy it down before you continue.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+<AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+
           <button 
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline w-full"
           >
             Sign Up
           </button>
+
           <p className='text-sm text-center mt-4 text-gray-500 py-5 '>
             Already have an account? Click
               <a href="/login" className='text-sm text-center mt-4 text-blue-500 hover:underline '> here</a>

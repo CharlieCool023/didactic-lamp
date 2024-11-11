@@ -8,6 +8,9 @@ import { FcGoogle } from 'react-icons/fc';
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import logoImage from '@/assets/images/logosaas.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -20,6 +23,8 @@ export default function Home() {
     setError('');
 
     try {
+      const loadingToastId = toast.loading('Verifying credentials...');
+
       const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
@@ -27,22 +32,43 @@ export default function Home() {
         },
         body: JSON.stringify({ email, password }),
       });
+      toast.dismiss(loadingToastId);
 
-      // Check if the response is not ok (status code outside of 200-299)
-      if (!response.ok) {
-        // Attempt to parse the error response
-        const errorData = await response.json().catch(() => ({ error: 'An error occurred' })); 
-        throw new Error(errorData.error || 'Login failed');
-      }
-
-      const data = await response.json();
-      if (data.success) {
-        // Redirect to the admin page
+      if (response.ok) {
+        // Login was successful, redirect to the admin page
         router.push('/admin'); 
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Login failed');
+
+        toast.error(errorData.error || 'Login failed', {
+          position: "top-center",
+          autoClose: 3000, // Close after 3 seconds
+        });
+        if (errorData.error === 'Invalid email') {
+          toast.error('Incorrect email. Please try again.', {
+            // ...
+          });
+        } else if (errorData.error === 'Invalid password') {
+          toast.error('Incorrect password. Please try again.', {
+            // ...
+          });
+        } else {
+          toast.error('Login failed. Please sign up if you don\'t have an account.', {
+            // ...
+          });
+        }
       }
-    } catch (error: any) { // Catch any errors during the process
-      setError(error.message); // Set the error message from the caught error
+    } catch (error: any) {
+      setError('Something went wrong. Please try again.');
+
+  toast.error('Something went wrong. Please try again.', {
+        position: "top-center", 
+        autoClose: 3000,
+    });
+        
     }
+    
   };
 
   return (
@@ -52,7 +78,6 @@ export default function Home() {
                 <div className="my-4">
                     <h1 className="text-3xl font-semibold">Login</h1>
                     <p className="mt-2 text-xs text-slate-400">
-                        {''}
                         See your Growth and get consulting growth
                     </p>
                 </div>
@@ -60,7 +85,7 @@ export default function Home() {
                     <Button className="flex mb-4 items-center w-full gap-4 px-12 bg-transparent rounded-full" 
                     variant="outline">
                       <FcGoogle />
-                      Sign In with google
+                      Sign In with Google
                     </Button>
                     <Label htmlFor="email">Email*</Label>
                     <Input className="mt-2 mb-4 bg-transparent rounded-full px-5"
@@ -77,6 +102,7 @@ export default function Home() {
                     Login
                     </Button>
                 </form>
+                <ToastContainer />
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <p className="mt-4 text-xs text-slate-200">
                 <a href="/register" className="text-blue-500 hover:underline">Click here to register</a>
