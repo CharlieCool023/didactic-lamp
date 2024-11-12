@@ -112,7 +112,7 @@ const RegisterPage = () => {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <div> {/* Added wrapper div here */}
-                <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                <Button type="submit" onClick={() => handleRegister} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
                   Register
                 </Button>
               </div>
@@ -126,7 +126,7 @@ const RegisterPage = () => {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onSubmit={handleRegister}>Continue</AlertDialogAction>
+                <AlertDialogAction>Continue</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

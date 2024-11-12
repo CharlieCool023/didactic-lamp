@@ -73,7 +73,7 @@ export default function Home() {
                 <div className="my-4">
                     <h1 className="text-3xl font-semibold">Login</h1>
                     <p className="mt-2 text-xs text-slate-400">
-                        See your Growth and get consulting growth
+                        Experience the power of blockchain technology
                     </p>
                 </div>
                 <form className="" onSubmit={handleLogin}>
@@ -108,6 +108,11 @@ export default function Home() {
 
             </div>
             <div className="relative hidden md:flex bg-[linear-gradient(to_bottom,#0f172a,#1e293b)] flex-col text-center items-center justify-center max-w-7xl mx-auto">
+            <Image
+              src={logoImage}
+              alt="Logo"
+              className="h-12 w-12 relative"
+            />
               <h2 className="text-7xl text-center font-extrabold text-white mb-4">Blockchain Verification App</h2>
               <p className="text-center text-white text-md ">
                 Ensuring product authenticity and transparency using blockchain technology. Verify with confidence and build consumer trust. 
