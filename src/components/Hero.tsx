@@ -44,7 +44,7 @@ export const Hero = () => {
           </p>
         </div>
         <div className='flex justify-center mt-8'>
-          <button className='bg-white text-black py-3 px-5 rounded-lg font-medium'>Get Started</button>
+          <button className='bg-white text-black py-3 px-5 rounded-lg font-medium'> <a href="/verify">Get Started</a> </button>
         </div>
       </div>
       

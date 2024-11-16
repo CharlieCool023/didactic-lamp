@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 import { cn as clsx } from "@/lib/utils";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-
+import { ThemeProvider } from "@/components/theme-provider"
 
 const dmSans = Inter({ subsets: ['latin'] })
 
@@ -21,7 +21,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(dmSans.className, "antialiased")}>{children}</body>
+      <body className={clsx(dmSans.className, "antialiased")}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          />
+            {children}</body>
     </html>
   )
 }
