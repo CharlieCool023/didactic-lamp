@@ -36,8 +36,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
-export const description =
-  "Veri5ied dashboard for verifying the authenticity ofproducts."
 
 export const iframeHeight = "800px"
 
