@@ -37,10 +37,6 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 
-export const iframeHeight = "800px"
-
-export const containerClassName = "w-full h-full"
-
 export default function Dashboard() {
 
   const [productId, setProductId] = useState('');
