@@ -36,7 +36,7 @@ export default function Home() {
 
       if (response.ok) {
         // Login was successful, redirect to the admin page
-        router.push('/admin'); 
+        router.push('/dashboard'); 
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'Login failed');

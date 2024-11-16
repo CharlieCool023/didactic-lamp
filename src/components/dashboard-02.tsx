@@ -1,4 +1,3 @@
-'use client'
 import Link from "next/link"
 import {
   Bell,
@@ -12,8 +11,6 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react"
-import { SetStateAction, useState } from 'react';
-import { QRCode } from 'react-qrcode-logo'; // Import a QR code library if you don't have one
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -35,51 +32,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
-export const description =
-  "A products dashboard with a sidebar navigation and a main content area. The dashboard has a header with a search input and a user menu. The sidebar has a logo, navigation links, and a card with a call to action. The main content area shows an empty state with a call to action."
-
-export const iframeHeight = "800px"
-
-export const containerClassName = "w-full h-full"
-
 export default function Dashboard() {
-
-  const [productId, setProductId] = useState('');
-  const [scannedProductId, setScannedProductId] = useState(''); 
-  const [productDetails, setProductDetails] = useState(null);
-  const [showError, setShowError] = useState(false);
-
-  const handleProductIdChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-    setProductId(event.target.value);
-  };
-
-  const handleScan = () => {
-    // Integrate QR code scanner logic here (e.g., using a library like 'react-qr-reader')
-    // ...
-    // Update scannedProductId with the scanned value
-    setScannedProductId('scanned-product-id'); // Replace with actual scanned value
-  };
-
-  const handleVerify = async () => {
-    const idToVerify = productId || scannedProductId;
-
-    try {
-      // Make an API call to verify the product using 'idToVerify'
-      const response = await fetch(`/api/products/${idToVerify}`);
-      const data = await response.json();
-
-      if (data) {
-        setProductDetails(data);
-        setShowError(false);
-      } else {
-        setShowError(true);
-      }
-    } catch (error) {
-      console.error('Error verifying product:', error);
-      setShowError(true);
-    }
-  };
-  
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -87,7 +40,7 @@ export default function Dashboard() {
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <Package2 className="h-6 w-6" />
-              <span className="">Veri5ied</span>
+              <span className="">Acme Inc</span>
             </Link>
             <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
               <Bell className="h-4 w-4" />
@@ -108,7 +61,7 @@ export default function Dashboard() {
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <ShoppingCart className="h-4 w-4" />
-                Add Products
+                Orders
                 <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                   6
                 </Badge>
@@ -118,26 +71,26 @@ export default function Dashboard() {
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
                 <Package className="h-4 w-4" />
-                Verify{" "}
+                Products{" "}
               </Link>
-              {/* <Link
+              <Link
                 href="#"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Users className="h-4 w-4" />
-                Products
-              </Link> */}
+                Customers
+              </Link>
               <Link
                 href="#"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <LineChart className="h-4 w-4" />
-                View All Products
+                Analytics
               </Link>
             </nav>
           </div>
           <div className="mt-auto p-4">
-            <Card x-chunk="dashboard-02-chunk-0">
+            <Card x-chunk="A card with a call to action">
               <CardHeader className="p-2 pt-0 md:p-4">
                 <CardTitle>Upgrade to Pro</CardTitle>
                 <CardDescription>
@@ -174,7 +127,7 @@ export default function Dashboard() {
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
                   <Package2 className="h-6 w-6" />
-                  <span className="sr-only">Vei5ied</span>
+                  <span className="sr-only">Acme Inc</span>
                 </Link>
                 <Link
                   href="#"
@@ -188,7 +141,7 @@ export default function Dashboard() {
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
                 >
                   <ShoppingCart className="h-5 w-5" />
-                  Add Products
+                  Orders
                   <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                     6
                   </Badge>
@@ -198,16 +151,22 @@ export default function Dashboard() {
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Package className="h-5 w-5" />
-                  Verify
+                  Products
+                </Link>
+                <Link
+                  href="#"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                >
+                  <Users className="h-5 w-5" />
+                  Customers
                 </Link>
                 <Link
                   href="#"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <LineChart className="h-5 w-5" />
-                  View All Products
+                  Analytics
                 </Link>
-                
               </nav>
               <div className="mt-auto">
                 <Card>
@@ -256,14 +215,13 @@ export default function Dashboard() {
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        
-    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           <div className="flex items-center">
             <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
           </div>
           <div
+            x-chunk="An empty state showing no products with a heading, description and a call to action to add a product."
             className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
-            x-chunk="dashboard-02-chunk-1"
           >
             <div className="flex flex-col items-center gap-1 text-center">
               <h3 className="text-2xl font-bold tracking-tight">
@@ -272,7 +230,7 @@ export default function Dashboard() {
               <p className="text-sm text-muted-foreground">
                 You can start selling as soon as you add a product.
               </p>
-              <Button onClick={handleVerify} className="mt-4">Verify Product</Button>
+              <Button className="mt-4">Add Product</Button>
             </div>
           </div>
         </main>

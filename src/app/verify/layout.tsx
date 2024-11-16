@@ -1,4 +1,4 @@
-// admin-layout.tsx
+
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
